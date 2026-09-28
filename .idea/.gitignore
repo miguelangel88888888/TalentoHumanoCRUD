@@ -1,0 +1,10 @@
+# Default ignored files
+/../../TalentoHumano./.idea/shelf/
+/../../TalentoHumano./.idea/workspace.xml
+# Editor-based HTTP Client requests
+/../../TalentoHumano./.idea/httpRequests/
+# Ignored default folder with query files
+/../../TalentoHumano./.idea/queries/
+# Datasource local storage ignored files
+/../../TalentoHumano./.idea/dataSources/
+/../../TalentoHumano./.idea/dataSources.local.xml
