@@ -1,7 +1,7 @@
-package modelo; // o repositorio, según tu guía
+package repositorio;
 
-import java.util.*;
 import modelo.EmpleadoBase;
+import java.util.*;
 
 public class RepositorioEmpleados {
     private Map<String, EmpleadoBase> empleados = new HashMap<>();
