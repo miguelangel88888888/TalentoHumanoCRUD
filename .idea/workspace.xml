@@ -5,11 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5e982ffe-6982-474a-9aa4-9b1b3a272c58" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../TalentoHumano/src/modelo/EmpleadoPlanta.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../TalentoHumano/src/modelo/EmpleadoTemporal.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../TalentoHumano/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TalentoHumano/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../TalentoHumano/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../TalentoHumano/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../TalentoHumano/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TalentoHumano/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/../TalentoHumano/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TalentoHumano/src/controlador/EmpleadoControlador.java" beforeDir="false" afterPath="$PROJECT_DIR$/../TalentoHumano/src/controlador/EmpleadoControlador.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TalentoHumano/src/modelo/EmpleadoAdministrativo.java" beforeDir="false" afterPath="$PROJECT_DIR$/../TalentoHumano/src/modelo/EmpleadoAdministrativo.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../TalentoHumano/src/modelo/EmpleadoBase.java" beforeDir="false" afterPath="$PROJECT_DIR$/../TalentoHumano/src/modelo/EmpleadoBase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TalentoHumano/src/modelo/RepositorioEmpleados.java" beforeDir="false" afterPath="$PROJECT_DIR$/../TalentoHumano/src/modelo/RepositorioEmpleados.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TalentoHumano/src/modelo/EmpleadoPlanta.java" beforeDir="false" afterPath="$PROJECT_DIR$/../TalentoHumano/src/modelo/EmpleadoPlanta.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TalentoHumano/src/modelo/EmpleadoTemporal.java" beforeDir="false" afterPath="$PROJECT_DIR$/../TalentoHumano/src/modelo/EmpleadoTemporal.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TalentoHumano/src/vista/VentanaEmpleados.java" beforeDir="false" afterPath="$PROJECT_DIR$/../TalentoHumano/src/vista/VentanaEmpleados.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -17,12 +22,13 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="EmbeddingIndexingInfo">
-    <option name="cachedIndexableFilesCount" value="13" />
+    <option name="cachedIndexableFilesCount" value="16" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
+        <option value="SimpleSourceFile" />
       </list>
     </option>
   </component>
@@ -45,6 +51,65 @@
     <commands />
     <urls />
   </component>
+  <component name="NextEditCompletionFeaturesState">
+    <decayedCancelled>
+      <entry key="MS100" value="1.4231835698355426" />
+      <entry key="MS500" value="2.29812853457255" />
+      <entry key="S2" value="5.519924179928291" />
+      <entry key="S5" value="11.384685421622084" />
+      <entry key="S10" value="16.538584050721298" />
+      <entry key="S30" value="22.200554572660245" />
+      <entry key="S60" value="24.31064617423704" />
+      <entry key="M2" value="26.20636859440862" />
+      <entry key="M5" value="32.82257947027743" />
+      <entry key="M10" value="43.056788691002524" />
+      <entry key="M15" value="49.429813742127465" />
+      <entry key="M30" value="58.377123967944485" />
+      <entry key="H1" value="64.14330260140665" />
+      <entry key="H2" value="67.42278866092678" />
+      <entry key="H4" value="69.17247917270203" />
+      <entry key="D1" value="70.68985749896933" />
+      <entry key="W1" value="70.95555585806359" />
+    </decayedCancelled>
+    <decayedSelected>
+      <entry key="MS100" value="0.0" />
+      <entry key="MS500" value="0.0" />
+      <entry key="S2" value="0.0" />
+      <entry key="S5" value="0.0" />
+      <entry key="S10" value="0.0" />
+      <entry key="S30" value="0.0" />
+      <entry key="S60" value="0.0" />
+      <entry key="M2" value="0.0" />
+      <entry key="M5" value="0.0" />
+      <entry key="M10" value="0.0" />
+      <entry key="M15" value="0.0" />
+      <entry key="M30" value="0.0" />
+      <entry key="H1" value="0.0" />
+      <entry key="H2" value="0.0" />
+      <entry key="H4" value="0.0" />
+      <entry key="D1" value="0.0" />
+      <entry key="W1" value="0.0" />
+    </decayedSelected>
+    <decayedShown>
+      <entry key="MS100" value="1.334402535025871" />
+      <entry key="MS500" value="2.2688524232285237" />
+      <entry key="S2" value="5.501266502684011" />
+      <entry key="S5" value="11.368817252534338" />
+      <entry key="S10" value="16.52699825517782" />
+      <entry key="S30" value="22.195362478338062" />
+      <entry key="S60" value="24.307793738927845" />
+      <entry key="M2" value="26.204806664245904" />
+      <entry key="M5" value="32.82140443112689" />
+      <entry key="M10" value="43.055331260643484" />
+      <entry key="M15" value="49.42834939483419" />
+      <entry key="M30" value="58.37597683465755" />
+      <entry key="H1" value="64.14257644432057" />
+      <entry key="H2" value="67.42237916966454" />
+      <entry key="H4" value="69.17226161842274" />
+      <entry key="D1" value="70.6898193495002" />
+      <entry key="W1" value="70.95555036032454" />
+    </decayedShown>
+  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 5,
   &quot;fromUser&quot;: false
@@ -57,29 +122,62 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.MCP Project settings loaded&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
-    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
-    &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;onboarding.tips.debug.path&quot;: &quot;C:/Users/Miguel/IdeaProjects/TalentoHumano/src/Main.java&quot;,
-    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "Application.Main (1).executor": "Run",
+    "Application.Main .executor": "Coverage",
+    "Application.Main.executor": "Run",
+    "Application.VentanaEmpleados.executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.MCP Project settings loaded": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "codeWithMe.voiceChat.enabledByDefault": "false",
+    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
+    "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true",
+    "junie.onboarding.icon.badge.shown": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/Miguel/IdeaProjects/TalentoHumano",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "onboarding.tips.debug.path": "C:/Users/Miguel/IdeaProjects/TalentoHumano/untitled/src/Main.java",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "to.speed.mode.migration.done": "true",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
+  <component name="RunManager">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Main" />
+      <module name="TalentoHumano." />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Main" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-30f59d01ecdd-37e91769500f-intellij.indexing.shared.core-IU-261.27258.48" />
+        <option value="bundled-js-predefined-d6986cc7102b-31caf2ab9e3c-JavaScript-IU-261.27258.48" />
+      </set>
+    </attachedChunks>
+  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="5e982ffe-6982-474a-9aa4-9b1b3a272c58" name="Changes" comment="" />
@@ -89,7 +187,9 @@
       <updated>1790629398356</updated>
       <workItem from="1790629399384" duration="1554000" />
       <workItem from="1790630980679" duration="816000" />
-      <workItem from="1790645434164" duration="740000" />
+      <workItem from="1790645434164" duration="5440000" />
+      <workItem from="1790651155393" duration="2737000" />
+      <workItem from="1790653981132" duration="1353000" />
     </task>
     <servers />
   </component>
@@ -100,11 +200,27 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/../TalentoHumano/src/vista/VentanaEmpleados.java</url>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/../TalentoHumano/src/Main.java</url>
-          <line>10</line>
-          <option name="timeStamp" value="1" />
+          <line>5</line>
+          <option name="timeStamp" value="12" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/../TalentoHumano/src/vista/VentanaEmpleados.java</url>
+          <properties class="vista.VentanaEmpleados">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="5" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/TalentoHumano_$Main.ic" NAME="Main Coverage Results" MODIFIED="1790652207630" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
+    <SUITE FILE_PATH="coverage/TalentoHumano_$Main_.ic" NAME="Main  Coverage Results" MODIFIED="1790650208071" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
   </component>
 </project>

@@ -1,122 +1,251 @@
 package vista;
 
 import controlador.EmpleadoControlador;
+import modelo.EmpleadoAdministrativo;
 import modelo.EmpleadoBase;
-import repositorio.RepositorioEmpleados;
+import modelo.EmpleadoComercial;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.HashMap;
 
+/**
+ * La ventana del sistema. Solo muestra información y captura lo que el usuario hace;
+ * todas las decisiones se las delega al controlador.
+ */
 public class VentanaEmpleados extends JFrame {
-    private EmpleadoControlador controlador;
+    private final EmpleadoControlador controlador;
 
-    // Componentes de la interfaz
-    private JTextField txtCedula, txtNombre, txtCargo, txtSalario;
-    private JTextArea areaResultado;
+    private final JTextField txtCedula = new JTextField();
+    private final JTextField txtNombre = new JTextField();
+    private final JTextField txtSalario = new JTextField();
+    private final JTextField txtBonificacion = new JTextField();
+    private final JComboBox<String> cmbTipo = new JComboBox<>(EmpleadoControlador.TIPOS_EMPLEADO);
+    private final JLabel lblBonificacion = new JLabel("Bonificación (solo administrativos):");
 
-    public VentanaEmpleados() {
-        // Inicializar controlador con repositorio
-        controlador = new EmpleadoControlador(new RepositorioEmpleados());
+    private final JButton btnAgregar = new JButton("Agregar");
+    private final JButton btnBuscar = new JButton("Buscar");
+    private final JButton btnActualizar = new JButton("Actualizar");
+    private final JButton btnEliminar = new JButton("Eliminar");
+    private final JButton btnLimpiar = new JButton("Limpiar");
+    private final JButton btnHistorial = new JButton("Historial");
+    private final JButton btnEstadisticas = new JButton("Estadísticas");
 
-        setTitle("Gestión de Empleados");
-        setSize(500, 400);
+    private DefaultTableModel datosTabla;
+    private final JLabel lblResumen = new JLabel();
+
+    public VentanaEmpleados(EmpleadoControlador controlador) {
+        super("Sistema CRUD de Talento Humano");
+        this.controlador = controlador;
+
+        setLayout(new BorderLayout(10, 10));
+        add(construirFormulario(), BorderLayout.NORTH);
+        add(construirTabla(), BorderLayout.CENTER);
+        lblResumen.setBorder(BorderFactory.createEmptyBorder(0, 10, 10, 10));
+        add(lblResumen, BorderLayout.SOUTH);
+
+        conectarEventos();
+        refrescarTabla();
+
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLayout(new BorderLayout());
-
-        // Panel de entrada
-        JPanel panelEntrada = new JPanel(new GridLayout(4, 2));
-        panelEntrada.add(new JLabel("Cédula:"));
-        txtCedula = new JTextField();
-        panelEntrada.add(txtCedula);
-
-        panelEntrada.add(new JLabel("Nombre:"));
-        txtNombre = new JTextField();
-        panelEntrada.add(txtNombre);
-
-        panelEntrada.add(new JLabel("Cargo:"));
-        txtCargo = new JTextField();
-        panelEntrada.add(txtCargo);
-
-        panelEntrada.add(new JLabel("Salario:"));
-        txtSalario = new JTextField();
-        panelEntrada.add(txtSalario);
-
-        add(panelEntrada, BorderLayout.NORTH);
-
-        // Panel de botones
-        JPanel panelBotones = new JPanel(new FlowLayout());
-        JButton btnAgregar = new JButton("Agregar");
-        JButton btnBuscar = new JButton("Buscar");
-        JButton btnActualizar = new JButton("Actualizar");
-        JButton btnEliminar = new JButton("Eliminar");
-        JButton btnListar = new JButton("Listar");
-
-        panelBotones.add(btnAgregar);
-        panelBotones.add(btnBuscar);
-        panelBotones.add(btnActualizar);
-        panelBotones.add(btnEliminar);
-        panelBotones.add(btnListar);
-
-        add(panelBotones, BorderLayout.CENTER);
-
-        // Área de resultados
-        areaResultado = new JTextArea();
-        add(new JScrollPane(areaResultado), BorderLayout.SOUTH);
-
-        // Eventos de botones
-        btnAgregar.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                EmpleadoBase emp = new EmpleadoBase(
-                        txtCedula.getText(),
-                        txtNombre.getText(),
-                        txtCargo.getText(),
-                        Double.parseDouble(txtSalario.getText())
-                );
-                controlador.agregarEmpleado(emp);
-                areaResultado.setText("Empleado agregado: " + emp);
-            }
-        });
-
-        btnBuscar.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                EmpleadoBase emp = controlador.buscarEmpleado(txtCedula.getText());
-                areaResultado.setText(emp != null ? emp.toString() : "Empleado no encontrado.");
-            }
-        });
-
-        btnActualizar.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                EmpleadoBase emp = new EmpleadoBase(
-                        txtCedula.getText(),
-                        txtNombre.getText(),
-                        txtCargo.getText(),
-                        Double.parseDouble(txtSalario.getText())
-                );
-                controlador.actualizarEmpleado(emp);
-                areaResultado.setText("Empleado actualizado: " + emp);
-            }
-        });
-
-        btnEliminar.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                controlador.eliminarEmpleado(txtCedula.getText());
-                areaResultado.setText("Empleado eliminado con cédula: " + txtCedula.getText());
-            }
-        });
-
-        btnListar.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                areaResultado.setText("Lista de empleados:\n");
-                for (EmpleadoBase emp : controlador.listarEmpleados()) {
-                    areaResultado.append(emp.toString() + "\n");
-                }
-            }
-        });
+        setSize(780, 540);
+        setLocationRelativeTo(null);
     }
 
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> new VentanaEmpleados().setVisible(true));
+    private JPanel construirFormulario() {
+        JPanel campos = new JPanel(new GridLayout(5, 2, 8, 8));
+        campos.add(new JLabel("Cédula:"));
+        campos.add(txtCedula);
+        campos.add(new JLabel("Nombre completo:"));
+        campos.add(txtNombre);
+        campos.add(new JLabel("Salario base:"));
+        campos.add(txtSalario);
+        campos.add(new JLabel("Tipo de empleado:"));
+        campos.add(cmbTipo);
+        campos.add(lblBonificacion);
+        campos.add(txtBonificacion);
+        txtBonificacion.setEnabled(false);
+
+        JPanel botones = new JPanel(new FlowLayout());
+        JButton[] listaBotones = {btnAgregar, btnBuscar, btnActualizar, btnEliminar, btnLimpiar, btnHistorial, btnEstadisticas};
+        for (JButton boton : listaBotones) {
+            botones.add(boton);
+        }
+
+        JPanel panel = new JPanel(new BorderLayout(10, 10));
+        panel.setBorder(BorderFactory.createEmptyBorder(10, 10, 0, 10));
+        panel.add(campos, BorderLayout.CENTER);
+        panel.add(botones, BorderLayout.SOUTH);
+        return panel;
+    }
+
+    private String texto(JTextField campo) {
+        return campo.getText().trim();
+    }
+
+    private String tipoSeleccionado() {
+        return (String) cmbTipo.getSelectedItem();
+    }
+
+    private JScrollPane construirTabla() {
+        String[] columnas = {"Cédula", "Nombre", "Tipo", "Salario base", "Salario total"};
+        datosTabla = new DefaultTableModel(columnas, 0) {
+            @Override
+            public boolean isCellEditable(int fila, int columna) {
+                return false;
+            }
+        };
+        JTable tabla = new JTable(datosTabla);
+        JScrollPane scroll = new JScrollPane(tabla);
+        scroll.setBorder(BorderFactory.createTitledBorder("Empleados registrados"));
+        return scroll;
+    }
+
+    private void refrescarTabla() {
+        datosTabla.setRowCount(0);
+        ArrayList<EmpleadoBase> empleados = controlador.obtenerEmpleados();
+        empleados.sort(Comparator.comparing(EmpleadoBase::getNombre, String.CASE_INSENSITIVE_ORDER));
+
+        for (EmpleadoBase empleado : empleados) {
+            Object[] fila = {
+                    empleado.getCedula(),
+                    empleado.getNombre(),
+                    empleado.getTipo(),
+                    formatoPesos(empleado.getSalarioBase()),
+                    formatoPesos(empleado.calcularSalarioTotal())
+            };
+            datosTabla.addRow(fila);
+        }
+        lblResumen.setText("Empleados: " + datosTabla.getRowCount() + " | Total nómina: " + formatoPesos(controlador.calcularTotalNomina()));
+    }
+
+    private String formatoPesos(double valor) {
+        return String.format("$ %,.0f", valor);
+    }
+
+    private void conectarEventos() {
+        cmbTipo.addActionListener(e -> {
+            String tipo = tipoSeleccionado();
+            boolean necesitaCampo = "Administrativo".equals(tipo) || "Comercial".equals(tipo);
+            txtBonificacion.setEnabled(necesitaCampo);
+            if ("Comercial".equals(tipo)) {
+                lblBonificacion.setText("Comisión % (solo comerciales):");
+            } else if ("Administrativo".equals(tipo)) {
+                lblBonificacion.setText("Bonificación (solo administrativos):");
+            } else {
+                lblBonificacion.setText("Bonificación / Comisión %:");
+            }
+            if (!necesitaCampo) {
+                txtBonificacion.setText("");
+            }
+        });
+
+        btnAgregar.addActionListener(e -> mostrarResultado(controlador.agregarEmpleado(
+                texto(txtCedula), texto(txtNombre), texto(txtSalario), tipoSeleccionado(), texto(txtBonificacion))));
+
+        btnActualizar.addActionListener(e -> mostrarResultado(controlador.actualizarEmpleado(
+                texto(txtCedula), texto(txtNombre), texto(txtSalario), tipoSeleccionado(), texto(txtBonificacion))));
+
+        btnBuscar.addActionListener(e -> buscar());
+        btnEliminar.addActionListener(e -> eliminar());
+        btnLimpiar.addActionListener(e -> limpiarFormulario());
+        btnHistorial.addActionListener(e -> mostrarHistorial());
+        btnEstadisticas.addActionListener(e -> mostrarEstadisticas());
+    }
+
+    private void mostrarResultado(String mensaje) {
+        JOptionPane.showMessageDialog(this, mensaje);
+        refrescarTabla();
+    }
+
+    private void buscar() {
+        String cedula = texto(txtCedula);
+        if (cedula.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Escribe una cédula para buscar.");
+            return;
+        }
+
+        EmpleadoBase empleado = controlador.buscarEmpleado(cedula);
+        if (empleado == null) {
+            JOptionPane.showMessageDialog(this, "No se encontró ningún empleado con la cédula " + cedula + ".");
+            return;
+        }
+
+        txtNombre.setText(empleado.getNombre());
+        txtSalario.setText(String.format("%.0f", empleado.getSalarioBase()));
+        cmbTipo.setSelectedItem(empleado.getTipo());
+
+        if (empleado instanceof EmpleadoAdministrativo) {
+            txtBonificacion.setEnabled(true);
+            lblBonificacion.setText("Bonificación (solo administrativos):");
+            EmpleadoAdministrativo administrativo = (EmpleadoAdministrativo) empleado;
+            txtBonificacion.setText(String.format("%.0f", administrativo.getBonificacion()));
+        } else if (empleado instanceof EmpleadoComercial) {
+            txtBonificacion.setEnabled(true);
+            lblBonificacion.setText("Comisión % (solo comerciales):");
+            EmpleadoComercial comercial = (EmpleadoComercial) empleado;
+            txtBonificacion.setText(String.format("%.0f", comercial.getPorcentajeComision()));
+        } else {
+            txtBonificacion.setEnabled(false);
+            txtBonificacion.setText("");
+            lblBonificacion.setText("Bonificación / Comisión %:");
+        }
+    }
+
+    private void eliminar() {
+        String cedula = texto(txtCedula);
+        int respuesta = JOptionPane.showConfirmDialog(this,
+                "¿Seguro que deseas eliminar al empleado con cédula " + cedula + "?",
+                "Confirmar eliminación",
+                JOptionPane.YES_NO_OPTION);
+
+        if (respuesta == JOptionPane.YES_OPTION) {
+            mostrarResultado(controlador.eliminarEmpleado(cedula));
+            limpiarFormulario();
+        }
+    }
+
+    private void limpiarFormulario() {
+        txtCedula.setText("");
+        txtNombre.setText("");
+        txtSalario.setText("");
+        txtBonificacion.setText("");
+        cmbTipo.setSelectedIndex(0);
+        lblBonificacion.setText("Bonificación / Comisión %:");
+        txtBonificacion.setEnabled(false);
+        txtCedula.requestFocus();
+    }
+
+    private void mostrarHistorial() {
+        ArrayList<String> historial = controlador.obtenerHistorial();
+        if (historial.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Aún no hay operaciones registradas.");
+            return;
+        }
+
+        String texto = "";
+        for (int i = 0; i < historial.size(); i++) {
+            texto += (i + 1) + ". " + historial.get(i) + "\n";
+        }
+
+        JOptionPane.showMessageDialog(this, texto, "Historial de operaciones", JOptionPane.INFORMATION_MESSAGE);
+    }
+
+    private void mostrarEstadisticas() {
+        HashMap<String, Integer> conteo = new HashMap<>();
+        for (EmpleadoBase empleado : controlador.obtenerEmpleados()) {
+            String tipo = empleado.getTipo();
+            conteo.put(tipo, conteo.getOrDefault(tipo, 0) + 1);
+        }
+
+        StringBuilder texto = new StringBuilder("Estadísticas por tipo:\n");
+        for (String tipo : conteo.keySet()) {
+            texto.append(tipo).append(": ").append(conteo.get(tipo)).append("\n");
+        }
+
+        JOptionPane.showMessageDialog(this, texto.toString(), "Estadísticas", JOptionPane.INFORMATION_MESSAGE);
     }
 }

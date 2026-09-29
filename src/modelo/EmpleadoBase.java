@@ -1,34 +1,49 @@
 package modelo;
 
+/**
+ * Representa a un empleado general (operativo) de la empresa.
+ * Es la clase "padre" de la jerarquía de empleados.
+ */
 public class EmpleadoBase {
-    private String cedula;
+    private final String cedula;
     private String nombre;
-    private String cargo;
-    private double salario;
+    private double salarioBase;
 
-    public EmpleadoBase(String cedula, String nombre, String cargo, double salario) {
+    public EmpleadoBase(String cedula, String nombre, double salarioBase) {
         this.cedula = cedula;
         this.nombre = nombre;
-        this.cargo = cargo;
-        this.salario = salario;
+        setSalarioBase(salarioBase);
     }
 
-    // Getters y Setters
-    public String getCedula() { return cedula; }
-    public void setCedula(String cedula) { this.cedula = cedula; }
+    public String getCedula() {
+        return cedula;
+    }
 
-    public String getNombre() { return nombre; }
-    public void setNombre(String nombre) { this.nombre = nombre; }
+    public String getNombre() {
+        return nombre;
+    }
 
-    public String getCargo() { return cargo; }
-    public void setCargo(String cargo) { this.cargo = cargo; }
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
 
-    public double getSalario() { return salario; }
-    public void setSalario(double salario) { this.salario = salario; }
+    public double getSalarioBase() {
+        return salarioBase;
+    }
 
-    @Override
-    public String toString() {
-        return "Empleado [cedula=" + cedula + ", nombre=" + nombre +
-                ", cargo=" + cargo + ", salario=" + salario + "]";
+    public void setSalarioBase(double salarioBase) {
+        if (salarioBase >= 0) {
+            this.salarioBase = salarioBase;
+        } else {
+            this.salarioBase = 0;
+        }
+    }
+
+    public double calcularSalarioTotal() {
+        return salarioBase;
+    }
+
+    public String getTipo() {
+        return "Operativo";
     }
 }
