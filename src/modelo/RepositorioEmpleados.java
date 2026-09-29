@@ -1,43 +1,49 @@
-package modelo;
+package modelo; // o repositorio, según tu guía
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
+import modelo.EmpleadoBase;
 
 public class RepositorioEmpleados {
+    private Map<String, EmpleadoBase> empleados = new HashMap<>();
 
-    private HashMap<String, EmpleadoBase> empleados;
-
-    public RepositorioEmpleados() {
-        empleados = new HashMap<>();
-    }
-
-    public boolean agregar(EmpleadoBase empleado) {
-        if (empleados.containsKey(empleado.getCedula())) {
+    // Agregar empleado
+    public boolean agregar(EmpleadoBase e) {
+        if (empleados.containsKey(e.getCedula())) {
+            System.out.println("⚠️ Ya existe un empleado con esa cédula.");
             return false;
         }
-
-        empleados.put(empleado.getCedula(), empleado);
+        empleados.put(e.getCedula(), e);
+        System.out.println("✅ Empleado agregado correctamente.");
         return true;
     }
 
+    // Buscar empleado
     public EmpleadoBase buscar(String cedula) {
         return empleados.get(cedula);
     }
 
-    public boolean actualizar(EmpleadoBase empleado) {
-        if (!empleados.containsKey(empleado.getCedula())) {
+    // Actualizar empleado
+    public boolean actualizar(EmpleadoBase e) {
+        if (!empleados.containsKey(e.getCedula())) {
+            System.out.println("⚠️ No se encontró el empleado para actualizar.");
             return false;
         }
-
-        empleados.put(empleado.getCedula(), empleado);
+        empleados.put(e.getCedula(), e);
+        System.out.println("✅ Empleado actualizado correctamente.");
         return true;
     }
 
+    // Eliminar empleado
     public boolean eliminar(String cedula) {
-        return empleados.remove(cedula) != null;
+        if (empleados.remove(cedula) != null) {
+            System.out.println("✅ Empleado eliminado correctamente.");
+            return true;
+        }
+        System.out.println("⚠️ No se encontró el empleado para eliminar.");
+        return false;
     }
 
+    // Listar todos los empleados
     public List<EmpleadoBase> listarTodos() {
         return new ArrayList<>(empleados.values());
     }
